@@ -1,0 +1,12 @@
+<div *ngIf="basket.length > 0">
+  <h3>Twój koszyk:</h3>
+  <ul>
+    <li *ngFor="let product of basket">
+      {{ product.name }} - {{ product.price }} zł
+      <i class="bi bi-trash" (click)="removeProduct(product)"></i>
+    </li>
+  </ul>
+</div>
+<div *ngIf="basket.length === 0">
+  <p>Koszyk jest pusty.</p>
+</div>
