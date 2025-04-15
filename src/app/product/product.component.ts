@@ -1,8 +1,8 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../shared/interfaces/products.interface';
-import {NgForOf, NgIf} from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import { NgForOf, NgIf } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-product',
@@ -10,18 +10,16 @@ import {FormsModule} from '@angular/forms';
   standalone: true,
   imports: [
     NgForOf,
-    NgIf,
     FormsModule
   ],
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
   products: Product[] = [];
-  basket: Product[] = [];
   whitesChecked = true;
   blacksChecked = true;
 
-  @Output() basketUpdated = new EventEmitter<Product[]>();
+  @Output() productAdded = new EventEmitter<Product>();
 
   constructor(private http: HttpClient) {}
 
@@ -36,12 +34,12 @@ export class ProductComponent implements OnInit {
       return false;
     });
   }
-  addBasket(product: Product) {
-    const newProduct = { ...product, id: this.basket.length + 1 }; // Generowanie ID
-    this.basket.push(newProduct);
-    this.basketUpdated.emit(this.basket);
-    console.log('Basket:', this.basket);
+
+  addProductToBasket(product: Product) {
+    this.productAdded.emit(product); // Emit only the product
+    console.log('Product added:', product);
   }
+
   ngOnInit(): void {
     this.http.get<Product[]>('http://localhost:3000/products')
       .subscribe((data) => {

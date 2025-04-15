@@ -1,7 +1,129 @@
 {
   "products": [
-    { "id": 1, "name": "Produkt 1", "price": 10, "imageUrl": "dziecko.jpg", "category": 1 },
-    { "id": 2, "name": "Produkt 2", "price": 20, "imageUrl": "dziecko.jpg", "category": 2 },
-    { "id": 3, "name": "Produkt 3", "price": 30, "imageUrl": "dziecko.jpg", "category": 1 }
+    {
+      "id": 1,
+      "name": "Produkt 1",
+      "price": 10,
+      "imageUrl": "dziecko.jpg",
+      "category": 1
+    },
+    {
+      "id": 2,
+      "name": "Produkt 2",
+      "price": 20,
+      "imageUrl": "dziecko.jpg",
+      "category": 2
+    },
+    {
+      "id": 3,
+      "name": "Produkt 3",
+      "price": 30,
+      "imageUrl": "dziecko.jpg",
+      "category": 1
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "price": 70,
+      "products": [
+        {
+          "id": 1,
+          "name": "Produkt 1",
+          "price": 10,
+          "imageUrl": "dziecko.jpg",
+          "category": 1
+        },
+        {
+          "id": 2,
+          "name": "Produkt 1",
+          "price": 10,
+          "imageUrl": "dziecko.jpg",
+          "category": 1
+        },
+        {
+          "id": 3,
+          "name": "Produkt 1",
+          "price": 10,
+          "imageUrl": "dziecko.jpg",
+          "category": 1
+        },
+        {
+          "id": 4,
+          "name": "Produkt 2",
+          "price": 20,
+          "imageUrl": "dziecko.jpg",
+          "category": 2
+        },
+        {
+          "id": 5,
+          "name": "Produkt 2",
+          "price": 20,
+          "imageUrl": "dziecko.jpg",
+          "category": 2
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "price": 50,
+      "products": [
+        {
+          "id": 1,
+          "name": "Produkt 1",
+          "price": 10,
+          "imageUrl": "dziecko.jpg",
+          "category": 1
+        },
+        {
+          "id": 2,
+          "name": "Produkt 2",
+          "price": 20,
+          "imageUrl": "dziecko.jpg",
+          "category": 2
+        },
+        {
+          "id": 3,
+          "name": "Produkt 2",
+          "price": 20,
+          "imageUrl": "dziecko.jpg",
+          "category": 2
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "price": 80,
+      "products": [
+        {
+          "id": 1,
+          "name": "Produkt 2",
+          "price": 20,
+          "imageUrl": "dziecko.jpg",
+          "category": 2
+        },
+        {
+          "id": 2,
+          "name": "Produkt 2",
+          "price": 20,
+          "imageUrl": "dziecko.jpg",
+          "category": 2
+        },
+        {
+          "id": 3,
+          "name": "Produkt 2",
+          "price": 20,
+          "imageUrl": "dziecko.jpg",
+          "category": 2
+        },
+        {
+          "id": 4,
+          "name": "Produkt 2",
+          "price": 20,
+          "imageUrl": "dziecko.jpg",
+          "category": 2
+        }
+      ]
+    }
   ]
 }

@@ -10,17 +10,17 @@
           <button class="nav-link active" aria-current="page">Produkty</button>
         </li>
         <li class="nav-item">
-          <button class="nav-link active" aria-current="page" data-bs-toggle="offcanvas" data-bs-target="#offcanvasKoszyk" aria-controls="offcanvasKoszyk">Koszyk</button>
+          <button class="nav-link active" aria-current="page" data-bs-toggle="offcanvas" data-bs-target="#offcanvasKoszyk" aria-controls="offcanvasKoszyk">Koszyk ({{basketCount}})</button>
         </li>
         <li class="nav-item">
-          <button class="nav-link active" aria-current="page" >Panel</button>
+          <button class="nav-link active" aria-current="page" data-bs-toggle="offcanvas" data-bs-target="#offcanvasPanel" aria-controls="offcanvasPanel">Panel</button>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-<app-product (basketUpdated)="updateBasket($event)"></app-product>
-<!--podawanie w gore za pomoca outputa-->
+
+<app-product (productAdded)="basketComponent.addProduct($event)"></app-product>
 
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasKoszyk" aria-labelledby="offcanvasKoszykLabel">
   <div class="offcanvas-header">
@@ -28,11 +28,19 @@
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
-    <app-basket [basket]="basket"></app-basket>
-    <!--podawanie w dol za pomoca inputa-->
+    <app-basket (checkoutOrder)="onCheckout()" #basketComponent></app-basket>
   </div>
 </div>
 
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasPanel" aria-labelledby="offcanvasPanelLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasPanelLabel">Panel</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <app-panel [masterBasket]="masterBasket"></app-panel>
+  </div>
+</div>
 
 
 
