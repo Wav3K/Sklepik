@@ -16,19 +16,19 @@ import { FormsModule } from '@angular/forms';
 })
 export class ProductComponent implements OnInit {
   products: Product[] = [];
-  whitesChecked = true;
-  blacksChecked = true;
+  categoryChecked1 = true;
+  categoryChecked2 = true;
 
   @Output() productAdded = new EventEmitter<Product>();
 
   constructor(private http: HttpClient) {}
 
-  filterProducts(products: Product[], whitesChecked: boolean, blacksChecked: boolean): Product[] {
+  filterProducts(products: Product[], categoryChecked1: boolean, categoryChecked2: boolean): Product[] {
     return products.filter(product => {
-      if (whitesChecked && product.category == 2) {
+      if (categoryChecked1 && product.category == 2) {
         return true;
       }
-      if (blacksChecked && product.category == 1) {
+      if (categoryChecked2 && product.category == 1) {
         return true;
       }
       return false;
@@ -41,9 +41,9 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.get<Product[]>('http://localhost:3000/products')
+    this.http.get<{ [key: string]: Product }>('http://localhost:3000/products')
       .subscribe((data) => {
-        this.products = data;
+        this.products = Object.values(data);
       });
   }
 }

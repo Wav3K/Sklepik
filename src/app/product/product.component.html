@@ -1,13 +1,13 @@
 <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group" style="padding: 0.5rem">
-  <input class="btn-check" type="checkbox" id="whites1" [(ngModel)]="whitesChecked">
-  <label class="btn btn-outline-primary" for="whites1">Biali</label>
+  <input class="btn-check" type="checkbox" id="whites1" [(ngModel)]="categoryChecked1">
+  <label class="btn btn-outline-primary" for="whites1">Grupa 1</label>
 
-  <input class="btn-check" type="checkbox" id="blacks1" [(ngModel)]="blacksChecked">
-  <label class="btn btn-outline-primary" for="blacks1">Czarni</label>
+  <input class="btn-check" type="checkbox" id="blacks1" [(ngModel)]="categoryChecked2">
+  <label class="btn btn-outline-primary" for="blacks1">Grupa 2</label>
 </div>
 <div class="container">
   <div class="row">
-    <div *ngFor="let product of filterProducts(products, whitesChecked, blacksChecked)" class="col-md-4" style="margin-bottom: 1rem;">
+    <div *ngFor="let product of filterProducts(products, categoryChecked1, categoryChecked2)" class="col-md-4" style="margin-bottom: 1rem;">
       <div class="card" style="width: 100%;">
         <img [src]="product.imageUrl" class="card-img-top" alt="{{ product.name }}">
         <div class="card-body">

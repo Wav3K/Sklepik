@@ -36,14 +36,19 @@ export class BasketComponent {
   }
 
   checkout() {
-    this.http.get<Orders[]>('http://localhost:3000/orders').subscribe((orders) => {
-      const nextId = orders.length > 0 ? Math.max(...orders.map(order => order.id)) + 1 : 1;
+    this.http.get<{ [key: string]: Orders }>('http://localhost:3000/orders').subscribe((orders) => {
+      const orderKeys = Object.keys(orders).map(Number);
+      const nextId = orderKeys.length > 0 ? Math.max(...orderKeys) + 1 : 1;
 
-      this.http.post('http://localhost:3000/orders', {
+      const newOrder = {
         id: nextId,
         price: this.basket.reduce((sum, p) => sum + p.price, 0),
         products: this.basket
-      }).subscribe(() => {
+      };
+
+      const updatedOrders = { ...orders, [nextId]: newOrder };
+
+      this.http.put('http://localhost:3000/orders', updatedOrders).subscribe(() => {
         this.checkoutOrder.emit(this.basket);
         this.basket = [];
         this.sendBasketCount.emit(this.basket.length);

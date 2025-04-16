@@ -20,17 +20,18 @@ export class PanelComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   refreshOrders() {
-    this.http.get<Orders[]>('http://localhost:3000/orders')
+    this.http.get<{ [key: string]: Orders }>('http://localhost:3000/orders')
       .subscribe((data) => {
-        this.masterBasket = data; // Update the orders list
+        this.masterBasket = Object.values(data);
       });
   }
+
   removeOrder(order: Orders) {
     this.http.delete(`http://localhost:3000/orders/${order.id}`).subscribe(() => {
-      this.masterBasket = this.masterBasket.filter(existingOrder => existingOrder.id !== order.id); // Remove from UI
-      console.log('Order removed:', order);
-    }, error => {
-      console.error('Failed to remove order:', error);
+      this.http.get<{ [key: string]: Orders }>('http://localhost:3000/orders')
+        .subscribe((data) => {
+          this.masterBasket = Object.values(data);
+        });
     });
   }
   ngOnInit(): void {
